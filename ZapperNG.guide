@@ -1,0 +1,307 @@
+@DATABASE "ZapperNG.guide"
+@(c) "2020 Stefan Blixth, OnyxSoft"
+@$VER: "ZapperNG 1.0 (09-10-20) by Stefan Blixth, OnyxSoft"
+@INDEX "Index"
+@NODE "Main" "ZapperNG - Documentation"
+@NEXT "intro"
+
+ @{b}ZapperNG 1.0@{ub} - © 2020 Stefan Blixth, OnyxSoft
+
+ - User Documentation -
+
+ @{" Introduction " LINK "intro"   } - What is ZapperNG ?
+ @{" Requirements " LINK "req"     } - What does it need to run ?
+ @{" Installation " LINK "install" } - How to install it.
+ @{" Usage        " LINK "usage"   } - How to use ZapperNG.
+
+ @{" FAQ          " LINK "faq"     } - Frequently Asked Questions.
+
+ @{" What's new ? " LINK "news"    } - What is new in this version?
+ @{" History      " LINK "history" } - The history of this program.
+ @{" Future       " LINK "future"  } - What can we see in the crystal-ball?
+ @{" Copyrights   " LINK "copy"    } - Legal mumbo-jumbo..
+
+ @{" Author       " LINK "author"  } - Person behind this program.
+ @{" Thanks to..  " LINK "thanks"  } - My best regards to..
+
+ @{" Donations    " LINK "donate"  } - Show your support for OnyxSoft
+
+@ENDNODE
+
+@NODE "intro" "ZapperNG - Introduction"
+@PREV "main"
+@NEXT "req"
+
+ @{b}@{u}Introduction@{uu}@{ub}
+
+ Why a new Zapper tool ?
+
+ My fellow OnyxSoft developer Adam Waldenberg release the orginal Zapper tool around 2005.
+ I've always loved the function of this tool but sadly this tool was only released for MorphOS.
+ And since I use other AmigaOS compatible systems as well I really wanted this tool for all systems.
+
+ So I started to nag Adam about getting the sources since he left the Amiga scene a long time ago.
+ The sources was said to be backuped somewhere and his old Pegasos was dead as I understood it.
+ So instead of waiting for the unknown if the sources will be available or not I started
+ to re-write the Zapper tool from scratch on my own.
+ 
+ A part from the orginal functions, I've added some additional features as well =)
+ And that's how ZapperNG was born!
+
+@ENDNODE
+
+@NODE "req" "ZapperNG - Requirements"
+@PREV "intro"
+@NEXT "install"
+
+ @{b}@{u}Requirements@{uu}@{ub}
+
+ This program needs some of the following systems to run :
+
+ · MorphOS 2.x or higher
+ · AmigaOS 2.x or higher
+ · AmigaOS 4.x or higher
+
+@ENDNODE
+
+@NODE "install" "ZapperNG - Installation"
+@PREV "req"
+@NEXT "usage"
+
+ @{b}@{u}Installation@{uu}@{ub}
+
+ This program doesn't need any installation and because of that doesn't come with
+ any form of installer script. Just place it where you want and run it from there! =)
+
+ If you like to have the functionality on by default, we suggest you place the program in
+ the WBStartup drawer!
+
+@ENDNODE
+
+@NODE "usage" "ZapperNG - Usage"
+@PREV "install"
+@NEXT "faq"
+
+ @{b}@{u}Usage@{uu}@{ub}
+
+ This tool doesn't use or have any real user interface.
+ It's built as a commodity and can be controlled partly from the Exchange tool.
+
+ The main idea of this tool was to patch/modify the behaviour of the ZipWindow() function in
+ intuition of the system.
+ 
+ So by pressing the ZipWindow gadget of the window the tool will calculate and resize the active
+ window in a smarter manner to fit it along with its neighbour windows.
+
+ Starting the ZapperNG tool again while it's allready running will close/quit the tool.
+ 
+
+ @{b}Tooltypes :@{ub}
+
+    @{b}IGNORESCREENTITLE@{ub}
+    If enabled, Zapper won't take the current screens titlebar into account when
+    upsizing the window. (By default zapper avoids covering the screens titlebar)
+
+    @{b}BALANCEWINDOW@{ub}
+    When this is enabled you enables the hotkey combination LAmiga+UP/DOWN/LEFT/RIGHT cursor keys
+    This mimic the function of Windows 7/10 behaviour (using Windows key+cursor keys) to balance the
+    active window in half in either direction.
+    
+    @{b}ZAPPERKEY@{ub}
+    This sets the hotkey for the zapper functionality which is the same as pressing the ZipWindow gadget
+    on an active window. This is especially good to have on systems that doesn't patch the ZipWindow
+    behaviour as intended. see @{"FAQ" LINK "faq"} for more information on this.
+    (default : LAmiga + z)
+
+    @{b}NOPUSHTOFRONT@{ub}
+    If enabled, Zapper won't set the active window frontmost.
+
+@ENDNODE
+
+@NODE "faq" "ZapperNG - FAQ"
+@PREV "usageprefs"
+@NEXT "news"
+
+@{b}@{u}FAQ - Frequently Asked Questions@{uu}@{ub}
+
+* @{b}Q = Question@{ub}
+* @{b}A = Answer@{ub}
+
+---------------------------------------------------------------------------------
+Q - I thought the main function was to change ZipWindow function, I cant get it
+    to work when I press the ZipWindow gadget ?
+
+A - This tool patches the ZipWindow() function with SetFunction() in AmigaOS.
+    For some reason this patch only works on MorphOS at the moment.
+    Might be due to an async behaviour on the ZipWindow()-function.
+    You can still trigger the patch by using the hotkey which is set in the
+    ToolTypes on the icon of the program (ZAPPERKEY).
+    
+    Since the source code is distributed with this tool, please if you have an
+    idea how to solve the SetFunction()-patch on other systems then MorphOS,
+    please contact me ASAP =)
+----------------------------------------------------------------------------------
+
+
+@ENDNODE
+
+@NODE "news" "ZapperNG - What's new?"
+@PREV "usage"
+@NEXT "history"
+
+ @{b}@{u}What's new@{uu}@{ub}
+ 
+ · New tool, re-written from scratch to mimic old Zapper tool behaviour.
+ · Written for all compatible Amigasystems in mind (AOS3, AOS4, MorphOS and AROS).
+ · Source code included.
+
+@ENDNODE
+
+@NODE "history" "ZapperNG - History"
+@PREV "news"
+@NEXT "future"
+
+ @{b}@{u}History@{uu}@{ub}
+
+ · 09-Oct-2020
+
+   * First official release of ZapperNG (v1.0) released.
+
+@ENDNODE
+
+@NODE "future" "ZapperNG - Future"
+@PREV "history"
+@NEXT "copy"
+
+ @{b}@{u}Future@{uu}@{ub}
+
+ · Bugfixes
+ · Build and include AROS binary files to archive
+ · Get ZipWindow() patch to work on other systems than MorphOS
+ 
+ · ... Suggestions are welcome =)
+
+@ENDNODE
+
+@NODE "copy" "ZapperNG - Copyright & Disclaimer"
+@PREV "future"
+@NEXT "author"
+
+ @{b}@{u}Copyright and Disclaimer@{uu}@{ub}
+
+ ZapperNG is totally free (FreeWare) but @{"donations" LINK "donate"} are always welcome.
+
+ If you like the program the @{"author" LINK "author"} would be very glad if
+ you would send him an e-mail or a postcard to tell him so... ;-)
+
+ Permission is granted to make and distribute verbatim copies of this 
+ program provided the copyright notice and this permission notice are 
+ preserved on all copies.
+
+ No guarantee of any kind is given that the programs described in this 
+ document are 100% reliable. You are using this material at your own risk. 
+ The author cannot be held responsible for any damage that is caused by 
+ using this program.
+
+ This package is freely distributable, but the copyrights still apply. 
+ This means that you can copy it freely as long as you don't ask for more 
+ than a nominal copying fee.
+
+ Permission is granted to include this package in Public-Domain collections,
+ Aminet (CD's) etc. etc. The package may be uploaded to Bulletin-
+ Board-Systems or FTP servers.
+ 
+@ENDNODE
+
+@NODE "author" "ZapperNG - About the author"
+@PREV "copy"
+@NEXT "thanks"
+
+ @{b}@{u}About the author@{uu}@{ub}
+
+ My name is Stefan Blixth from Karlstad, Sweden.
+
+ If you would like to contact me about this program (or any other program I've done),
+ the best way is to do so by e-mail.
+ So if you have any comments, found any bugs or have a complaint, don't hesitate to
+ use one of the following addresses :
+
+ Personal e-mail : @{b}stefan@onyxsoft.se@{ub}
+
+ If you would like to send me a postcard, my address is :
+
+ @{b}Stefan Blixth
+ Spånga 433
+ 655 94 Karlstad
+ Sweden@{ub}
+
+ If you are interested in more programs by me and/or the rest of the team.
+ You can find the complete OnyxSoft software library at the following URL :
+
+ @{b}www.onyxsoft.se@{ub}
+
+
+@ENDNODE
+
+@NODE "thanks" "ZapperNG - Thanks to.."
+@PREV "author"
+@NEXT "donate"
+
+ @{b}@{u}Thanks to@{uu}@{ub}
+
+ I'd like to thank the following people/groups for making it possible for me to create this program.
+
+ MorphOS Team......................... For creating the best system there is, I love it!
+ 
+ Adam "Chaozer" Waldenberg............ For creating the orginal Zapper which I based the idea of this tool from.
+ 
+ André "JoBBo" Siegel................. For the very nice PNG icon made for the Zapper tool!
+
+ Guido "Geit" Mersmann................ For getting me right on track on the MorphOS trap code =)
+
+
+@ENDNODE
+
+@NODE "donate" "ZapperNG - Donations"
+@PREV "thanks"
+
+ @{b}@{u}Donations are welcome@{uu}@{ub}
+
+ We at OnyxSoft have been releasing freeware applications since 1995 and are still going strong
+ with the greatest enthusiasm, and ambitions for the future of the Amiga-like platform(s).
+
+ This is of course something we would like to continue to do in the future.
+ All our titles are totally free of charge without any crippled functions, etc.
+
+ We have now established a PayPal account, as many users asked us how they could donate
+ money to us (to motivate us even more, and keep the software releases "flowing").
+
+ To send us donations (via PayPal), please use the following e-mail : @{b}donate@onyxsoft.se@{ub}
+ or this quick URL : @{b}https://www.paypal.com/paypalme/OnyxSoft@{ub}
+ 
+
+
+ Thank you for your support!
+
+
+@ENDNODE
+
+@NODE "Index" "Index of this documentation"
+
+ @{b}@{u}Index (A-Z)@{uu}@{ub}
+
+ @{" Author               " LINK "author"     }
+ @{" Copyright            " LINK "copy"       }
+ @{" Donations            " LINK "donate"     }
+ @{" FAQ                  " LINK "faq"        }
+ @{" Features             " LINK "intro"      }
+ @{" Future               " LINK "future"     }
+ @{" History              " LINK "history"    }
+ @{" Installation         " LINK "install"    }
+ @{" Introduction         " LINK "intro"      }
+ @{" Main-page            " LINK "main"       }
+ @{" Requirements         " LINK "req"        }
+ @{" Thanks to..          " LINK "thanks"     }
+ @{" Usage                " LINK "usage"      }
+ @{" What's new ?         " LINK "news"       }
+@ENDNODE

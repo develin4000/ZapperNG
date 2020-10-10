@@ -2,10 +2,10 @@
 ->========================================<-
 ->= ZapperNG - © Copyright 2020 OnyxSoft =<-
 ->========================================<-
-->= Version  : 1.0                       =<-
+->= Version  : 1.1                       =<-
 ->= File     : ZapperNG.c                =<-
 ->= Author   : Stefan Blixth             =<-
-->= Compiled : 2020-10-09                =<-
+->= Compiled : 2020-10-10                =<-
 ->========================================<-
 */
 
@@ -78,11 +78,40 @@ void ArrangeActiveWindow(BYTE hotkey)
       }
    }
 
+   if (hotkey == EVT_TAB)  //  Alt+Tab hotkey pressed...
+   {
+      if ((xwp == NULL) || (xcnt != wcntr))
+      {
+         xcnt = wcntr;
+         xwp = (struct Window *)tsp->FirstWindow;
+
+         if (!(xwp->Flags & (WFLG_BACKDROP)))
+         {
+            WindowToFront(xwp);
+            ActivateWindow(xwp);
+         }
+      }
+      else
+      {
+         if ((xwp = xwp->NextWindow) != NULL)
+         {
+            if (!(xwp->Flags & (WFLG_BACKDROP)))
+            {
+               WindowToFront(xwp);
+               ActivateWindow(xwp);
+            }
+         }
+      }
+
+      UnlockIBase(lock);
+      return 0;
+   }
+   
    debug_print("ZapperNG : %s (%d) - Max resolution = %d x %d\n", __func__, __LINE__, MaxWidth, MaxHeight)
    debug_print("ZapperNG : %s (%d) - Number of windows found : %d\n", __func__, __LINE__, wcntr);
    wcnt = wcntr;
 
-   if (hotkey == EVT_ZAPP)
+   if (hotkey == EVT_ZAPP)  // Zapper hotkey pressed or ZipWindow-function called...
    {
       for (wcntr = 0; wcntr <= wcnt; wcntr++)
       {
@@ -106,7 +135,7 @@ void ArrangeActiveWindow(BYTE hotkey)
                }
             }
 
-            if ((LeftEdge) > (awp->LeftEdge+awp->Width))  // Windows to the right of the active window... OK
+            if ((LeftEdge) >= (awp->LeftEdge+awp->Width))  // Windows to the right of the active window... OK
             {
                if ((TopEdge < (awp->TopEdge+awp->Height)) && ((TopEdge+Height) > awp->TopEdge))
                {
@@ -119,7 +148,7 @@ void ArrangeActiveWindow(BYTE hotkey)
                }
             }
 
-            if ((TopEdge + Height) < awp->TopEdge)  // Windows above active window... OK
+            if ((TopEdge + Height) <= awp->TopEdge)  // Windows above active window... OK
             {
                if (((LeftEdge + Width) > awp->LeftEdge)  && (LeftEdge < (awp->LeftEdge+awp->Width)))
                {
@@ -132,7 +161,7 @@ void ArrangeActiveWindow(BYTE hotkey)
                }
             }
 
-            if ((TopEdge) > (awp->TopEdge + awp->Height))  // Windows under active window... OK
+            if ((TopEdge) >= (awp->TopEdge + awp->Height))  // Windows under active window... OK
             {
                if (((LeftEdge + Width) > awp->LeftEdge)  && (LeftEdge < (awp->LeftEdge+awp->Width)))
                {
@@ -154,7 +183,7 @@ void ArrangeActiveWindow(BYTE hotkey)
       
       debug_print("ZapperNG : %s (%d) - NewSize  = (%d/%d/%d/%d)\n", __func__, __LINE__, BestLeft, BestTop, BestWidth, BestHeight); 
    }
-   else // Triggered by a hotkey!
+   else  //  BalanceWindow hotkey pressed...
    {
       if (awp == NULL)
          awp = IntuitionBase->ActiveWindow;
@@ -388,6 +417,10 @@ int HandleBroker(void)
                case EVT_ZAPP:
                   ArrangeActiveWindow(EVT_ZAPP);
                   break;
+
+               case EVT_TAB:
+                  ArrangeActiveWindow(EVT_TAB);
+                  break;
             }
             break;
 
@@ -519,6 +552,9 @@ BOOL FetchType(struct WBArg *wbarg)
       if ((temp = FindToolType((STRPTR *)toolarray, "NOPUSHTOFRONT")))
          opt_nofront = TRUE;
 
+      if ((temp = FindToolType((STRPTR *)toolarray, "ALTTAB")))
+         opt_alttab = TRUE;
+
       FreeDiskObject(dobj);
       success = TRUE;
    }
@@ -559,17 +595,26 @@ void SetupHotkeys(void)
 {
    debug_print("ZapperNG : %s (%d)\n", __func__, __LINE__);
 
-   hk_keyup = BindHotkey("lamiga up", EVT_UP);
-   if (hk_keyup) AttachCxObj(broker, hk_keyup);
+   if (use_hk)
+   {
+      hk_keyup = BindHotkey("lamiga up", EVT_UP);
+      if (hk_keyup) AttachCxObj(broker, hk_keyup);
 
-   hk_keydown = BindHotkey("lamiga down", EVT_DOWN);
-   if (hk_keydown) AttachCxObj(broker, hk_keydown);
+      hk_keydown = BindHotkey("lamiga down", EVT_DOWN);
+      if (hk_keydown) AttachCxObj(broker, hk_keydown);
 
-   hk_keyleft = BindHotkey("lamiga left", EVT_LEFT);
-   if (hk_keydown) AttachCxObj(broker, hk_keyleft);
+      hk_keyleft = BindHotkey("lamiga left", EVT_LEFT);
+      if (hk_keydown) AttachCxObj(broker, hk_keyleft);
 
-   hk_keyright = BindHotkey("lamiga right", EVT_RIGHT);
-   if (hk_keyright) AttachCxObj(broker, hk_keyright);
+      hk_keyright = BindHotkey("lamiga right", EVT_RIGHT);
+      if (hk_keyright) AttachCxObj(broker, hk_keyright);
+   }
+
+   if (opt_alttab)
+   {
+      hk_alttab = BindHotkey("alt tab", EVT_TAB);
+      if (hk_alttab) AttachCxObj(broker, hk_alttab);
+   }
 
    if (use_zk)
    {
@@ -589,9 +634,7 @@ int main(int argc, char **argv)
       if (argc == 0)             // Started from WB ?
          FetchTools(argc, argv); // ...Then check if we have some ToolTypes set 
 
-      if (use_hk)
-         SetupHotkeys();         // Setup hotkeys for BalancedWindows patch
-
+      SetupHotkeys();            // Setup hotkeys for BalancedWindows patch
       PatchZipWindow();          // Patch the ZipWindow behaviour.
       Handler();                 // Wait for stuff to happen
       RestoreZipWindow();        // Restore the patch to normal.

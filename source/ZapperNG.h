@@ -2,10 +2,10 @@
 ->========================================<-
 ->= ZapperNG - © Copyright 2020 OnyxSoft =<-
 ->========================================<-
-->= Version  : 1.0                       =<-
+->= Version  : 1.1                       =<-
 ->= File     : ZapperNG.h                =<-
 ->= Author   : Stefan Blixth             =<-
-->= Compiled : 2020-10-09                =<-
+->= Compiled : 2020-10-10                =<-
 ->========================================<-
 */
 
@@ -58,12 +58,14 @@ BOOL going = TRUE;
 BOOL use_hk = FALSE;
 BOOL use_zk = FALSE;
 CxObj *broker;
-CxObj *hk_keyup, *hk_keydown, *hk_keyleft, *hk_keyright, *hk_zapper;
+CxObj *hk_keyup, *hk_keydown, *hk_keyleft, *hk_keyright, *hk_zapper, *hk_alttab;
 ULONG cxsig;
 struct NewBroker zapperbroker;
 APTR OldFunctionPtr = NULL;
+struct Window *xwp = NULL;
+UBYTE xcnt = 0;
 
-BOOL opt_scrtitle = FALSE, opt_nofront = FALSE;
+BOOL opt_scrtitle = FALSE, opt_nofront = FALSE, opt_alttab = FALSE;
 
 char txt_zapkey[100];
 
@@ -92,10 +94,11 @@ struct winlist wlist[200];       // This is ugly, I know =)
 #define EVT_LEFT  3
 #define EVT_RIGHT 4
 #define EVT_ZAPP  5
+#define EVT_TAB   6
 
 
 #ifndef __AMIGADATE__
- #define __AMIGADATE__   "09.10.20"
+ #define __AMIGADATE__   "10.10.20"
 #endif
 
 
@@ -112,8 +115,8 @@ struct winlist wlist[200];       // This is ugly, I know =)
 #define DATE                  __AMIGADATE__
 #define VERSION               1
 #define STRVERSION            "1"
-#define REVISION              0
-#define STRREVISION           "0"
+#define REVISION              1
+#define STRREVISION           "1"
 
 #define NAME                  "ZapperNG"
 #define DESCRIPTION           "Patches the intuition behaviour"

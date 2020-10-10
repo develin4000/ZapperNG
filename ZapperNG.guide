@@ -1,11 +1,11 @@
 @DATABASE "ZapperNG.guide"
 @(c) "2020 Stefan Blixth, OnyxSoft"
-@$VER: "ZapperNG 1.0 (09-10-20) by Stefan Blixth, OnyxSoft"
+@$VER: "ZapperNG 1.1 (10-10-20) by Stefan Blixth, OnyxSoft"
 @INDEX "Index"
 @NODE "Main" "ZapperNG - Documentation"
 @NEXT "intro"
 
- @{b}ZapperNG 1.0@{ub} - © 2020 Stefan Blixth, OnyxSoft
+ @{b}ZapperNG 1.1@{ub} - © 2020 Stefan Blixth, OnyxSoft
 
  - User Documentation -
 
@@ -113,6 +113,9 @@
     behaviour as intended. see @{"FAQ" LINK "faq"} for more information on this.
     (default : LAmiga + z)
 
+    @{b}ALTTAB@{ub}
+    If enabled, you can cycle through the open windows with ALT+TAB combination.
+    
     @{b}NOPUSHTOFRONT@{ub}
     If enabled, Zapper won't set the active window frontmost.
 
@@ -150,10 +153,8 @@ A - This tool patches the ZipWindow() function with SetFunction() in AmigaOS.
 @NEXT "history"
 
  @{b}@{u}What's new@{uu}@{ub}
- 
- · New tool, re-written from scratch to mimic old Zapper tool behaviour.
- · Written for all compatible Amigasystems in mind (AOS3, AOS4, MorphOS and AROS).
- · Source code included.
+ · Fixed 1 pixel aligment when windows where "touching" each others =)
+ · Alt+Tab functionality added to cycle through windows (Tooltype : ALTTAB).
 
 @ENDNODE
 
@@ -163,7 +164,13 @@ A - This tool patches the ZipWindow() function with SetFunction() in AmigaOS.
 
  @{b}@{u}History@{uu}@{ub}
 
- · 09-Oct-2020
+ · 10-Oct-2020 - Version 1.1
+
+   * Fixed 1 pixel aligment when windows where "touching" each others =)
+   * Alt+Tab functionality added to cycle through windows (Tooltype : ALTTAB).
+
+
+ · 09-Oct-2020 - Version 1.0
 
    * First official release of ZapperNG (v1.0) released.
 

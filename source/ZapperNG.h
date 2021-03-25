@@ -114,8 +114,8 @@ struct winlist wlist[200];       // This is ugly, I know =)
 #define COPYRIGHT             "© " VYEARS " " AUTHOR ", " COMPANY
 #define DATE                  __AMIGADATE__
 #define VERSION               1
-#define STRVERSION            "2"
-#define REVISION              1
+#define STRVERSION            "1"
+#define REVISION              2
 #define STRREVISION           "2"
 
 #define NAME                  "ZapperNG"

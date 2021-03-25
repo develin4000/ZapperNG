@@ -1,12 +1,12 @@
 /*
-->========================================<-
-->= ZapperNG - © Copyright 2020 OnyxSoft =<-
-->========================================<-
-->= Version  : 1.1                       =<-
-->= File     : ZapperNG.h                =<-
-->= Author   : Stefan Blixth             =<-
-->= Compiled : 2020-10-10                =<-
-->========================================<-
+->=============================================<-
+->= ZapperNG - © Copyright 2020-2021 OnyxSoft =<-
+->=============================================<-
+->= Version  : 1.2                            =<-
+->= File     : ZapperNG.h                     =<-
+->= Author   : Stefan Blixth                  =<-
+->= Compiled : 2021-03-24                     =<-
+->=============================================<-
 */
 
 #ifndef ZAPPERNG_H_
@@ -98,7 +98,7 @@ struct winlist wlist[200];       // This is ugly, I know =)
 
 
 #ifndef __AMIGADATE__
- #define __AMIGADATE__   "10.10.20"
+ #define __AMIGADATE__   "24.03.21"
 #endif
 
 
@@ -106,7 +106,7 @@ struct winlist wlist[200];       // This is ugly, I know =)
  *                                  Defines                                   *
  *----------------------------------------------------------------------------*/
 
-#define VYEARS                "2020"
+#define VYEARS                "2020-2021"
 #define AUTHOR                "Stefan Blixth"
 #define EMAIL                 "stefan@onyxsoft.se"
 #define URL                   "www.onyxsoft.se"
@@ -114,9 +114,9 @@ struct winlist wlist[200];       // This is ugly, I know =)
 #define COPYRIGHT             "© " VYEARS " " AUTHOR ", " COMPANY
 #define DATE                  __AMIGADATE__
 #define VERSION               1
-#define STRVERSION            "1"
+#define STRVERSION            "2"
 #define REVISION              1
-#define STRREVISION           "1"
+#define STRREVISION           "2"
 
 #define NAME                  "ZapperNG"
 #define DESCRIPTION           "Patches the intuition behaviour"

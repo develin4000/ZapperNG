@@ -1,12 +1,12 @@
 /*
-->========================================<-
-->= ZapperNG - © Copyright 2020 OnyxSoft =<-
-->========================================<-
-->= Version  : 1.1                       =<-
-->= File     : ZapperNG.c                =<-
-->= Author   : Stefan Blixth             =<-
-->= Compiled : 2020-10-10                =<-
-->========================================<-
+->=============================================<-
+->= ZapperNG - © Copyright 2020-2021 OnyxSoft =<-
+->=============================================<-
+->= Version  : 1.2                            =<-
+->= File     : ZapperNG.c                     =<-
+->= Author   : Stefan Blixth                  =<-
+->= Compiled : 2021-03-24                     =<-
+->=============================================<-
 */
 
 #include "ZapperNG.h"
@@ -25,6 +25,7 @@ void ArrangeActiveWindow(BYTE hotkey)
    UBYTE wpos = 0;
    UBYTE wcntr = 0;
    UBYTE wcnt = 0;
+   UBYTE nextwin = 1;
    WORD LeftEdge, BestLeft = 0;
    WORD TopEdge, BestTop = 0;
    WORD Width, BestWidth = 0;
@@ -85,7 +86,7 @@ void ArrangeActiveWindow(BYTE hotkey)
          xcnt = wcntr;
          xwp = (struct Window *)tsp->FirstWindow;
 
-         if (!(xwp->Flags & (WFLG_BACKDROP)))
+         if (!(xwp->Flags & (WFLG_BACKDROP | WFLG_BORDERLESS | WFLG_GIMMEZEROZERO)))
          {
             WindowToFront(xwp);
             ActivateWindow(xwp);
@@ -93,14 +94,25 @@ void ArrangeActiveWindow(BYTE hotkey)
       }
       else
       {
-         if ((xwp = xwp->NextWindow) != NULL)
+         do
          {
-            if (!(xwp->Flags & (WFLG_BACKDROP)))
+            if ((xwp = xwp->NextWindow) != NULL)
             {
-               WindowToFront(xwp);
-               ActivateWindow(xwp);
+               if (!(xwp->Flags & (WFLG_BACKDROP | WFLG_BORDERLESS | WFLG_GIMMEZEROZERO)))
+               {
+                  WindowToFront(xwp);
+                  ActivateWindow(xwp);
+                  nextwin = 0;
+               }
+               else
+                  nextwin = 1;
+            }
+            else
+            {
+               nextwin = 0;
             }
          }
+         while (nextwin != 0);
       }
 
       UnlockIBase(lock);

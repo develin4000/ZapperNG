@@ -1,11 +1,11 @@
 @DATABASE "ZapperNG.guide"
-@(c) "2020 Stefan Blixth, OnyxSoft"
-@$VER: "ZapperNG 1.1 (10-10-20) by Stefan Blixth, OnyxSoft"
+@(c) "2020-2021 Stefan Blixth, OnyxSoft"
+@$VER: "ZapperNG 1.2 (24-03-21) by Stefan Blixth, OnyxSoft"
 @INDEX "Index"
 @NODE "Main" "ZapperNG - Documentation"
 @NEXT "intro"
 
- @{b}ZapperNG 1.1@{ub} - © 2020 Stefan Blixth, OnyxSoft
+ @{b}ZapperNG 1.2@{ub} - © 2020-2021 Stefan Blixth, OnyxSoft
 
  - User Documentation -
 
@@ -153,8 +153,7 @@ A - This tool patches the ZipWindow() function with SetFunction() in AmigaOS.
 @NEXT "history"
 
  @{b}@{u}What's new@{uu}@{ub}
- · Fixed 1 pixel aligment when windows where "touching" each others =)
- · Alt+Tab functionality added to cycle through windows (Tooltype : ALTTAB).
+ · Alt+Tab functionality skips borderless and backdrop windows.
 
 @ENDNODE
 
@@ -163,6 +162,11 @@ A - This tool patches the ZipWindow() function with SetFunction() in AmigaOS.
 @NEXT "future"
 
  @{b}@{u}History@{uu}@{ub}
+
+ · 24-Mar-2021 - Version 1.2
+
+   * Alt+Tab functionality skips borderless and backdrop windows.
+
 
  · 10-Oct-2020 - Version 1.1
 

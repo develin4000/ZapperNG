@@ -5,7 +5,7 @@
 ->= Version  : 1.2                            =<-
 ->= File     : ZapperNG.c                     =<-
 ->= Author   : Stefan Blixth                  =<-
-->= Compiled : 2021-03-24                     =<-
+->= Compiled : 2021-04-26                     =<-
 ->=============================================<-
 */
 
@@ -42,39 +42,19 @@ void ArrangeActiveWindow(BYTE hotkey)
    MaxWidth = tsp->Width;
    MaxHeight = tsp->Height;
 
-   //UnlockIBase(lock);
-
    awp = IntuitionBase->ActiveWindow;
-   twp = (struct Window *)tsp->FirstWindow;
 
-   if (twp)
+   for(twp = (struct Window *)tsp->FirstWindow; twp; twp = twp->NextWindow)
    {
       if(!(twp->Flags & (WFLG_BACKDROP)))
       {
-         if (awp == twp)
-            wpos = wcntr;
+         if (awp == twp)  wpos = wcntr;
 
-         wlist[wcntr].winptr     = twp;
-         wlist[wcntr].LeftEdge   = twp->LeftEdge;
-         wlist[wcntr].TopEdge    = twp->TopEdge;
-         wlist[wcntr].Width      = twp->Width;
-         wlist[wcntr].Height     = twp->Height;
-         wcntr++;
-      }
-
-      while ((twp = twp->NextWindow) != NULL)
-      {
-         if(!(twp->Flags & (WFLG_BACKDROP)))
-         {  
-            if (awp == twp)
-               wpos = wcntr;
-
-            wlist[wcntr].winptr     = twp;
-            wlist[wcntr].LeftEdge   = twp->LeftEdge;
-            wlist[wcntr].TopEdge    = twp->TopEdge;
-            wlist[wcntr].Width      = twp->Width;
-            wlist[wcntr].Height     = twp->Height;
-         }
+         wlist[wcntr].winptr   = twp;
+         wlist[wcntr].LeftEdge = twp->LeftEdge;
+         wlist[wcntr].TopEdge  = twp->TopEdge;
+         wlist[wcntr].Width    = twp->Width;
+         wlist[wcntr].Height   = twp->Height;
          wcntr++;
       }
    }
@@ -200,34 +180,27 @@ void ArrangeActiveWindow(BYTE hotkey)
       if (awp == NULL)
          awp = IntuitionBase->ActiveWindow;
 
+      BestLeft = 0;
+      BestTop = 0;
+      BestWidth = MaxWidth;
+      BestHeight = MaxHeight;
+
       switch (hotkey)
       {
          case EVT_UP:
-            BestLeft = 0;
-            BestTop = 0;
-            BestWidth = MaxWidth;
             BestHeight = MaxHeight/2;
             break;
 
          case EVT_DOWN:
-            BestLeft = 0;
             BestTop = MaxHeight/2;
-            BestWidth = MaxWidth;
-            BestHeight = MaxHeight;
             break;
 
          case EVT_LEFT:
-            BestLeft = 0;
-            BestTop = 0;
             BestWidth = MaxWidth/2;
-            BestHeight = MaxHeight;
             break;
 
          case EVT_RIGHT:
             BestLeft = MaxWidth/2;
-            BestTop = 0;
-            BestWidth = MaxWidth;
-            BestHeight = MaxHeight;
            break;
       }
 
@@ -408,32 +381,7 @@ int HandleBroker(void)
       switch (type)
       {
          case CXM_IEVENT:
-            switch (id)
-            {
-               case EVT_UP:
-                  ArrangeActiveWindow(EVT_UP);
-                  break;
-
-               case EVT_DOWN:
-                  ArrangeActiveWindow(EVT_DOWN);
-                  break;
-
-               case EVT_LEFT:
-                  ArrangeActiveWindow(EVT_LEFT);
-                  break;
-
-               case EVT_RIGHT:
-                  ArrangeActiveWindow(EVT_RIGHT);
-                  break;
-
-               case EVT_ZAPP:
-                  ArrangeActiveWindow(EVT_ZAPP);
-                  break;
-
-               case EVT_TAB:
-                  ArrangeActiveWindow(EVT_TAB);
-                  break;
-            }
+            ArrangeActiveWindow(id);
             break;
 
          case CXM_COMMAND:

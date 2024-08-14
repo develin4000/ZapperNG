@@ -251,7 +251,7 @@ int ArrangeActiveWindow(BYTE hotkey, struct Window *win)
 void NewZipWindow(void)
 {
    debug_print("ZapperNG : %s (%d)\n", __func__, __LINE__);
-   ArrangeActiveWindow(EVT_ZAPP, (APTR)REG_A0);//__reg("a0"));
+   ArrangeActiveWindow(EVT_ZAPP, (APTR)REG_A0);
 }
 
 

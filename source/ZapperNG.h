@@ -54,19 +54,6 @@ struct IntuitionBase *IntuitionBase = NULL;
 struct Library       *CxBase        = NULL;
 struct Library       *IconBase      = NULL;
 
-
-/*=----------------------------- Patches and Macros()-------------------------*
- * Patching some incompatible functions and adds some useful macros           *
- *----------------------------------------------------------------------------*/
-#ifndef __MORPHOS__
-
-   #define ASM
-  //#define REG(x) register __ ## x
-  //#define REG(reg, arg)	arg __asm(#req)
-  #define __REGA0(x) x __asm("a0")
-#endif
-
-
 BOOL going = TRUE;
 BOOL use_hk = FALSE;
 BOOL use_zk = FALSE;

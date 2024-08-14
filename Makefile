@@ -1,11 +1,11 @@
-#->=============================================<-
-#->= ZapperNG - © Copyright 2020-2021 OnyxSoft =<-
-#->=============================================<-
-#->= Version  : 1.2                            =<-
-#->= File     : Makefile                       =<-
-#->= Author   : Stefan Blixth                  =<-
-#->= Compiled : 2021-03-24                     =<-
-#->=============================================<-
+#->===============================================<-
+#->= ZapperNG - (c) Copyright 2020-2024 OnyxSoft =<-
+#->===============================================<-
+#->= Version  : 1.3                              =<-
+#->= File     : Makefile                         =<-
+#->= Author   : Stefan Blixth                    =<-
+#->= Compiled : 2024-08-14                       =<-
+#->===============================================<-
 
 #
 # Application specific stuff
@@ -24,13 +24,13 @@ APP_AMIGAOS			= $(APPNAME)_AmigaOS3
 #
 #CC_MORPHOS			= ppc-morphos-gcc
 #STRIP_MORPHOS		= ppc-morphos-strip
-CC_MORPHOS			= gcc
-STRIP_MORPHOS		= strip
+CC_MORPHOS			= ppc-morphos-gcc-11
+STRIP_MORPHOS		= ppc-morphos-strip
 CC_AMIGAOS4			= ppc-amigaos-gcc
 STRIP_AMIGAOS4		= ppc-amigaos-strip
 CC_AROS				= i386-aros-gcc
 STRIP_AROS			= 
-CC_AMIGAOS3			= m68-amigaos-gcc
+CC_AMIGAOS3			= m68k-amigaos-gcc
 STRIP_AMIGAOS3		=
 
 #

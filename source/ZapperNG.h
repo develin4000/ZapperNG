@@ -1,12 +1,12 @@
 /*
-->=============================================<-
-->= ZapperNG - © Copyright 2020-2021 OnyxSoft =<-
-->=============================================<-
-->= Version  : 1.2                            =<-
-->= File     : ZapperNG.h                     =<-
-->= Author   : Stefan Blixth                  =<-
-->= Compiled : 2021-03-24                     =<-
-->=============================================<-
+->===============================================<-
+->= ZapperNG - (c) Copyright 2020-2024 OnyxSoft =<-
+->===============================================<-
+->= Version  : 1.3                              =<-
+->= File     : ZapperNG.h                       =<-
+->= Author   : Stefan Blixth                    =<-
+->= Compiled : 2024-08-14                       =<-
+->===============================================<-
 */
 
 #ifndef ZAPPERNG_H_
@@ -54,6 +54,17 @@ struct IntuitionBase *IntuitionBase = NULL;
 struct Library       *CxBase        = NULL;
 struct Library       *IconBase      = NULL;
 
+
+/*=----------------------------- Patches and Macros()-------------------------*
+ * Patching some incompatible functions and adds some useful macros           *
+ *----------------------------------------------------------------------------*/
+#ifndef __MORPHOS__
+ #define __reg(r,x) REG(r) x
+#else // __MORPHOS__
+ #define REG(x)
+#endif
+
+
 BOOL going = TRUE;
 BOOL use_hk = FALSE;
 BOOL use_zk = FALSE;
@@ -98,7 +109,7 @@ struct winlist wlist[200];       // This is ugly, I know =)
 
 
 #ifndef __AMIGADATE__
- #define __AMIGADATE__   "24.03.21"
+ #define __AMIGADATE__   "14.08.24"
 #endif
 
 
@@ -106,23 +117,23 @@ struct winlist wlist[200];       // This is ugly, I know =)
  *                                  Defines                                   *
  *----------------------------------------------------------------------------*/
 
-#define VYEARS                "2020-2021"
+#define VYEARS                "2020-2024"
 #define AUTHOR                "Stefan Blixth"
 #define EMAIL                 "stefan@onyxsoft.se"
 #define URL                   "www.onyxsoft.se"
 #define COMPANY               "OnyxSoft"
-#define COPYRIGHT             "© " VYEARS " " AUTHOR ", " COMPANY
+#define COPYRIGHT             "ï¿½ " VYEARS " " AUTHOR ", " COMPANY
 #define DATE                  __AMIGADATE__
 #define VERSION               1
 #define STRVERSION            "1"
-#define REVISION              2
-#define STRREVISION           "2"
+#define REVISION              3
+#define STRREVISION           "3"
 
 #define NAME                  "ZapperNG"
 #define DESCRIPTION           "Patches the intuition behaviour"
 #define VERS                  NAME " "STRVERSION"."STRREVISION
-#define VSTRING               VERS" ("DATE") © "VYEARS " " AUTHOR ", " COMPANY
-#define MUISTRING             VERS" ("DATE") © "COMPANY
+#define VSTRING               VERS" ("DATE") ï¿½ "VYEARS " " AUTHOR ", " COMPANY
+#define MUISTRING             VERS" ("DATE") ï¿½ "COMPANY
 #define VERSTAG               "$VER:" VSTRING
 #define VERSTAG_MUI           "$VER: "VERS " ("DATE")"
 

@@ -1,12 +1,12 @@
 /*
-->=============================================<-
-->= ZapperNG - © Copyright 2020-2021 OnyxSoft =<-
-->=============================================<-
-->= Version  : 1.2                            =<-
-->= File     : ZapperNG.c                     =<-
-->= Author   : Stefan Blixth                  =<-
-->= Compiled : 2021-04-26                     =<-
-->=============================================<-
+->===============================================<-
+->= ZapperNG - (c) Copyright 2020-2024 OnyxSoft =<-
+->===============================================<-
+->= Version  : 1.3                              =<-
+->= File     : ZapperNG.c                       =<-
+->= Author   : Stefan Blixth                    =<-
+->= Compiled : 2024-08-14                       =<-
+->===============================================<-
 */
 
 #include "ZapperNG.h"
@@ -15,7 +15,7 @@
 const char Version[] = VERSTAG;
 
 // Our magic function that arranges the widow as we want it =)
-void ArrangeActiveWindow(BYTE hotkey)
+int ArrangeActiveWindow(BYTE hotkey, struct Window *win)
 {
    struct Screen *tsp = NULL;
    struct Window *twp = NULL;
@@ -42,7 +42,7 @@ void ArrangeActiveWindow(BYTE hotkey)
    MaxWidth = tsp->Width;
    MaxHeight = tsp->Height;
 
-   awp = IntuitionBase->ActiveWindow;
+   awp = win ? win : IntuitionBase->ActiveWindow;
 
    for(twp = (struct Window *)tsp->FirstWindow; twp; twp = twp->NextWindow)
    {
@@ -251,7 +251,7 @@ void ArrangeActiveWindow(BYTE hotkey)
 void NewZipWindow(void)
 {
    debug_print("ZapperNG : %s (%d)\n", __func__, __LINE__);
-   ArrangeActiveWindow(EVT_ZAPP);
+   ArrangeActiveWindow(EVT_ZAPP, (APTR)REG_A0);
 }
 
 
@@ -381,7 +381,7 @@ int HandleBroker(void)
       switch (type)
       {
          case CXM_IEVENT:
-            ArrangeActiveWindow(id);
+            ArrangeActiveWindow(id, NULL);
             break;
 
          case CXM_COMMAND:

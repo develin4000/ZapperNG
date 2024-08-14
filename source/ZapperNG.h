@@ -59,9 +59,11 @@ struct Library       *IconBase      = NULL;
  * Patching some incompatible functions and adds some useful macros           *
  *----------------------------------------------------------------------------*/
 #ifndef __MORPHOS__
- #define __reg(r,x) REG(r) x
-#else // __MORPHOS__
- #define REG(x)
+
+   #define ASM
+  //#define REG(x) register __ ## x
+  //#define REG(reg, arg)	arg __asm(#req)
+  #define __REGA0(x) x __asm("a0")
 #endif
 
 
@@ -122,7 +124,7 @@ struct winlist wlist[200];       // This is ugly, I know =)
 #define EMAIL                 "stefan@onyxsoft.se"
 #define URL                   "www.onyxsoft.se"
 #define COMPANY               "OnyxSoft"
-#define COPYRIGHT             "� " VYEARS " " AUTHOR ", " COMPANY
+#define COPYRIGHT             "(c)" VYEARS " " AUTHOR ", " COMPANY
 #define DATE                  __AMIGADATE__
 #define VERSION               1
 #define STRVERSION            "1"
@@ -132,8 +134,8 @@ struct winlist wlist[200];       // This is ugly, I know =)
 #define NAME                  "ZapperNG"
 #define DESCRIPTION           "Patches the intuition behaviour"
 #define VERS                  NAME " "STRVERSION"."STRREVISION
-#define VSTRING               VERS" ("DATE") � "VYEARS " " AUTHOR ", " COMPANY
-#define MUISTRING             VERS" ("DATE") � "COMPANY
+#define VSTRING               VERS" ("DATE") (c) "VYEARS " " AUTHOR ", " COMPANY
+#define MUISTRING             VERS" ("DATE") (c) "COMPANY
 #define VERSTAG               "$VER:" VSTRING
 #define VERSTAG_MUI           "$VER: "VERS " ("DATE")"
 

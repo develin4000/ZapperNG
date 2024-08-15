@@ -153,7 +153,8 @@ A - This tool patches the ZipWindow() function with SetFunction() in AmigaOS.
 @NEXT "history"
 
  @{b}@{u}What's new@{uu}@{ub}
- · Alt+Tab functionality skips borderless and backdrop windows.
+ · Added a patch by Thomas Igracki for a bug which only zipped the active window
+   Instead of the current window specified in the ZipWindow() call.
 
 @ENDNODE
 

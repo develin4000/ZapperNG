@@ -2,7 +2,7 @@ Short:        Change the behaviour of the zoom-button.
 Author:       Stefan Blixth (stefan -at- onyxsoft -dot- se)
 Uploader:     stefan@onyxsoft.se
 Type:         util/cdity
-Version:      1.2
+Version:      1.3
 Architecture: m68k-amigaos >= 2.0.0; ppc-morphos; ppc-amigaos
 
 ZapperNG is a Commodity that changes the behaviour of the Zoom or 
@@ -12,6 +12,7 @@ It's a complete re-written tool from scratch which mimics ChaoZers old MorphOS o
 tool (Zapper) : http://aminet.net/util/cdity/zapper_0.10.lha
 
 
-What's new (v1.2) :
+What's new (v1.3) :
 
-* Alt+Tab functionality skips borderless and backdrop windows.
+* Added a patch by Thomas Igracki for a bug which only zipped the active window
+  instead of the current window specified in the ZipWindow() call.

@@ -1,11 +1,11 @@
 @DATABASE "ZapperNG.guide"
-@(c) "2020-2021 Stefan Blixth, OnyxSoft"
-@$VER: "ZapperNG 1.2 (24-03-21) by Stefan Blixth, OnyxSoft"
+@(c) "2020-2024 Stefan Blixth, OnyxSoft"
+@$VER: "ZapperNG 1.3 (15-08-24) by Stefan Blixth, OnyxSoft"
 @INDEX "Index"
 @NODE "Main" "ZapperNG - Documentation"
 @NEXT "intro"
 
- @{b}ZapperNG 1.2@{ub} - © 2020-2021 Stefan Blixth, OnyxSoft
+ @{b}ZapperNG 1.3@{ub} - © 2020-2024 Stefan Blixth, OnyxSoft
 
  - User Documentation -
 
@@ -162,6 +162,12 @@ A - This tool patches the ZipWindow() function with SetFunction() in AmigaOS.
 @NEXT "future"
 
  @{b}@{u}History@{uu}@{ub}
+ 
+ · 15-Aug-2024 - Version 1.3
+
+   * Added a patch by Thomas Igracki for a bug which only zipped the active window
+     instead of the current window specified in the ZipWindow() call.
+
 
  · 24-Mar-2021 - Version 1.2
 
@@ -269,6 +275,8 @@ A - This tool patches the ZipWindow() function with SetFunction() in AmigaOS.
  André "JoBBo" Siegel................. For the very nice PNG icon made for the Zapper tool!
 
  Guido "Geit" Mersmann................ For getting me right on track on the MorphOS trap code =)
+
+ Thomas 'bitRocky' Igracki............ For finding a bug and also providing the solution for it, thanks mate!
 
 
 @ENDNODE
